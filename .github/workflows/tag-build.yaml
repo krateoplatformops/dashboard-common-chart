@@ -16,7 +16,7 @@ jobs:
         run: echo "::set-output name=VERSION_TAG::$(git describe --dirty --always --tags | sed 's/-/./2' | sed 's/-/./2' )"
         id: tagger
       - name: Replace Version in Chart.yaml
-        run: sed -i 's/VERSION/${{ steps.tagger.outputs.VERSION_TAG }}/g' ./Chart.yaml
+        run: sed -i 's/VERSION/${{ steps.tagger.outputs.VERSION_TAG }}/g' ./chart/Chart.yaml
       - name: Publish Helm chart
         uses: stefanprodan/helm-gh-pages@master
         with:
