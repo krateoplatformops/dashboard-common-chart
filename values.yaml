@@ -1,0 +1,15 @@
+mongodb:
+  uri: "<MONGODB_CONNECTION_STRING>"
+
+services:
+  hosts:
+    auth: "http://auth-service.krateo-dev.svc"
+    deployment: "http://deployment-service.krateo-dev.svc"
+    template: "http://template-service.krateo-dev.svc"
+    endpoint: "http://endpoint-service.krateo-dev.svc"
+    git: "http://git-service.krateo-dev.svc"
+    argocd: "http://argocd-service.krateo-dev.svc"
+    log: "http://log-service.krateo-dev.svc"
+    socket: "http://socket-service.krateo-dev.svc"
+    bridge: "http://bridge-service.krateo-dev.svc"
+    kubernetes: "http://kubernetes-service.krateo-dev.svc"
