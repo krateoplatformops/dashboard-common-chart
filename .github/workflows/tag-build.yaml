@@ -1,0 +1,28 @@
+name: Build stable Docker image (tags)
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  publish:
+    name: Create helm chart
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set tag
+        run: echo "::set-output name=VERSION_TAG::$(git describe --dirty --always --tags | sed 's/-/./2' | sed 's/-/./2' )"
+        id: tagger
+      - name: Replace Version in Chart.yaml
+        run: sed -i 's/VERSION/${{ steps.tagger.outputs.VERSION_TAG }}/g' ./Chart.yaml
+      - name: Publish Helm chart
+        uses: stefanprodan/helm-gh-pages@master
+        with:
+          token: ${{ secrets.HELM_CHARTS_BOT }}
+          charts_dir: ./
+          charts_url: https://charts.krateo.io
+          owner: krateoplatformops
+          repository: helm-charts
+          branch: gh-pages
