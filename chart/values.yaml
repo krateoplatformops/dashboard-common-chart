@@ -13,3 +13,4 @@ services:
     socket: "http://socket-service.krateo-dev.svc"
     bridge: "http://bridge-service.krateo-dev.svc"
     kubernetes: "http://kubernetes-service.krateo-dev.svc"
+    keptn: "http://keptn-service.krateo-dev.svc"
