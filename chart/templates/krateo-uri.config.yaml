@@ -13,4 +13,5 @@ data:
   SOCKET_URI: {{ .Values.services.hosts.socket | quote }}
   BRIDGE_URI: {{ .Values.services.hosts.bridge | quote }}
   KUBERNETES_URI: {{ .Values.services.hosts.kubernetes | quote }}
+  KEPTN_URI: {{ .Values.services.hosts.kubernetes | quote }}
   NAMESPACE: {{ .Release.Namespace | quote }}
