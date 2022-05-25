@@ -14,4 +14,6 @@ data:
   BRIDGE_URI: {{ .Values.services.hosts.bridge | quote }}
   KUBERNETES_URI: {{ .Values.services.hosts.kubernetes | quote }}
   KEPTN_URI: {{ .Values.services.hosts.keptn | quote }}
+  SONARCLOUD_URI: {{ .Values.services.hosts.sonarcloud | quote }}
+  PIPELINE_URI: {{ .Values.services.hosts.pipeline | quote }}
   NAMESPACE: {{ .Release.Namespace | quote }}
