@@ -15,5 +15,5 @@ services:
     bridge: "http://bridge-service.krateo-dev.svc"
     kubernetes: "http://kubernetes-service.krateo-dev.svc"
     keptn: "http://keptn-service.krateo-dev.svc"
-    sonarcloud: "http://sonarcloud-service.krateo-dev.svc"
+    codequality: "http://codequality-service.krateo-dev.svc"
     pipeline: "http://pipeline-service.krateo-dev.svc"
