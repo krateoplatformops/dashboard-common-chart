@@ -17,3 +17,4 @@ data:
   CODEQUALITY_URI: {{ .Values.services.hosts.codequality | quote }}
   PIPELINE_URI: {{ .Values.services.hosts.pipeline | quote }}
   NAMESPACE: {{ .Release.Namespace | quote }}
+  SECRET_URI:  {{ .Values.services.hosts.secret | quote }}
