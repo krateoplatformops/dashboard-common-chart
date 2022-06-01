@@ -18,3 +18,4 @@ data:
   PIPELINE_URI: {{ .Values.services.hosts.pipeline | quote }}
   NAMESPACE: {{ .Release.Namespace | quote }}
   SECRET_URI:  {{ .Values.services.hosts.secret | quote }}
+  PROVIDER_URI:  {{ .Values.services.hosts.provider | quote }}
