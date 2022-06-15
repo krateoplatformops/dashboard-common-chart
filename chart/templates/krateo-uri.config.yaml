@@ -8,21 +8,14 @@ data:
   DEPLOYMENT_URI: {{ .Values.services.hosts.deployment | quote }}
   TEMPLATE_URI: {{ .Values.services.hosts.template | quote }}
   ENDPOINT_URI: {{ .Values.services.hosts.endpoint | quote }}
-  GIT_URI:  {{ .Values.services.hosts.git | quote }}
+  GIT_URI: {{ .Values.services.hosts.git | quote }}
   ARGOCD_URI: {{ .Values.services.hosts.argocd | quote }}
   LOG_URI: {{ .Values.services.hosts.log | quote }}
   SOCKET_URI: {{ .Values.services.hosts.socket | quote }}
   BRIDGE_URI: {{ .Values.services.hosts.bridge | quote }}
-  SECRET_URI:  {{ .Values.services.hosts.secret | quote }}
-  PROVIDER_URI:  {{ .Values.services.hosts.provider | quote }}
-  {{ if .Values.services.host.kubernetes }}
-  KUBERNETES_URI: {{ .Values.services.hosts.kubernetes | quote }}
-  {{ end }}
-  {{ if .Values.services.host.keptn }}
-  KEPTN_URI: {{ .Values.services.hosts.keptn | quote }}
-  {{ if .Values.services.host.codequality }}
-  CODEQUALITY_URI: {{ .Values.services.hosts.codequality | quote }}
-  {{ end }}
-  {{ if .Values.services.host.pipeline }}
-  PIPELINE_URI: {{ .Values.services.hosts.pipeline | quote }}
-  {{ end }}
+  SECRET_URI: {{ .Values.services.hosts.secret | quote }}
+  PROVIDER_URI: {{ .Values.services.hosts.provider | quote }}
+  {{ include "krateo.kubernetes" . }}
+  {{ include "krateo.pipeline" . }}
+  {{ include "krateo.keptn" . }}
+  {{ include "krateo.codequality" . }}
