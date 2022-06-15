@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: krateo-uri-config
 data:
+  NAMESPACE: {{ .Release.Namespace | quote }}
   AUTH_URI: {{ .Values.services.hosts.auth | quote }}
   DEPLOYMENT_URI: {{ .Values.services.hosts.deployment | quote }}
   TEMPLATE_URI: {{ .Values.services.hosts.template | quote }}
@@ -12,10 +13,16 @@ data:
   LOG_URI: {{ .Values.services.hosts.log | quote }}
   SOCKET_URI: {{ .Values.services.hosts.socket | quote }}
   BRIDGE_URI: {{ .Values.services.hosts.bridge | quote }}
-  KUBERNETES_URI: {{ .Values.services.hosts.kubernetes | quote }}
-  KEPTN_URI: {{ .Values.services.hosts.keptn | quote }}
-  CODEQUALITY_URI: {{ .Values.services.hosts.codequality | quote }}
-  PIPELINE_URI: {{ .Values.services.hosts.pipeline | quote }}
-  NAMESPACE: {{ .Release.Namespace | quote }}
   SECRET_URI:  {{ .Values.services.hosts.secret | quote }}
   PROVIDER_URI:  {{ .Values.services.hosts.provider | quote }}
+  {{ if .Values.services.host.kubernetes }}
+  KUBERNETES_URI: {{ .Values.services.hosts.kubernetes | quote }}
+  {{ end }}
+  {{ if .Values.services.host.keptn }}
+  KEPTN_URI: {{ .Values.services.hosts.keptn | quote }}
+  {{ if .Values.services.host.codequality }}
+  CODEQUALITY_URI: {{ .Values.services.hosts.codequality | quote }}
+  {{ end }}
+  {{ if .Values.services.host.pipeline }}
+  PIPELINE_URI: {{ .Values.services.hosts.pipeline | quote }}
+  {{ end }}
