@@ -19,3 +19,4 @@ data:
   {{ include "krateo.pipeline" . }}
   {{ include "krateo.keptn" . }}
   {{ include "krateo.codequality" . }}
+  {{ include "krateo.nodetlsreject" . }}

@@ -3,6 +3,7 @@ mongodb:
   password: ""
 
 services:
+  ignore_self_signed_ssl: false
   hosts:
     auth: "http://auth-service.krateo-system.svc"
     deployment: "http://deployment-service.krateo-system.svc"
