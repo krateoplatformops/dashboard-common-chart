@@ -12,7 +12,6 @@ data:
   ARGOCD_URI: {{ .Values.services.hosts.argocd | quote }}
   LOG_URI: {{ .Values.services.hosts.log | quote }}
   SOCKET_URI: {{ .Values.services.hosts.socket | quote }}
-  BRIDGE_URI: {{ .Values.services.hosts.bridge | quote }}
   SECRET_URI: {{ .Values.services.hosts.secret | quote }}
   PROVIDER_URI: {{ .Values.services.hosts.provider | quote }}
   {{ include "krateo.kubernetes" . }}

@@ -13,7 +13,6 @@ services:
     argocd: "http://argocd-service.krateo-system.svc"
     log: "http://log-service.krateo-system.svc"
     socket: "http://socket-service.krateo-system.svc"
-    bridge: "http://bridge-service.krateo-system.svc"
     kubernetes: "http://kubernetes-service.krateo-system.svc"
     keptn: "http://keptn-service.krateo-system.svc"
     codequality: "http://codequality-service.krateo-system.svc"
