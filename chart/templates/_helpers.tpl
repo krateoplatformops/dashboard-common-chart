@@ -32,6 +32,12 @@
 {{- end -}}
 {{- end -}}
 
+{{- define "krateo.capi" -}}
+{{- if .Values.services.hosts.codequality -}}
+  CAPI_URI: {{ .Values.services.hosts.capi | quote }}
+{{- end -}}
+{{- end -}}
+
 {{- define "krateo.nodetlsreject" -}}
 {{- if .Values.services.ignore_self_signed_ssl -}}
   NODE_TLS_REJECT_UNAUTHORIZED: '0'

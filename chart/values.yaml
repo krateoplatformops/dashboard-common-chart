@@ -19,3 +19,4 @@ services:
     pipeline: "http://pipeline-service.krateo-system.svc"
     secret: "http://secret-service.krateo-system.svc"
     provider: "http://provider-service.krateo-system.svc"
+    capi: "http://capi-service.krateo-system.svc"
