@@ -1,0 +1,8 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: jwt-krateo
+config:
+  cookie_names:
+    - {{ .Values.cookie.name | b64enc }}
+plugin: jwt

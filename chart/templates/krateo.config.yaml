@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: krateo-config
+data:
+  NAMESPACE: {{ .Release.Namespace | quote }}
+  COOKIE_NAME: {{ .Values.cookie.name | quote }}
+  COOKIE_HTTPONLY: {{ .Values.cookie.httpOnly | quote }}
+  COOKIE_SECURE: {{ .Values.cookie.secure | quote }}
+  COOKIE_MAX_AGE: {{ .Values.cookie.maxAge | quote }}
+  COOKIE_DOMAIN: {{ .Values.cookie.domain | quote }}
+  COOKIE_SAMESITE: {{ .Values.cookie.sameSite | quote }}
+  COOKIE_PATH: {{ .Values.cookie.path | quote }}
+  {{ include "krateo.nodetlsreject" . }}

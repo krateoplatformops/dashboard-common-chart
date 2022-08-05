@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: krateo-consumer-secret
+  namespace: kong
+data:
+  key: {{ .Values.jwt.issuer | b64enc }}
+  secret: {{ .Values.jwt.secret | b64enc }}
+  kongCredType: and0
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: krateo-consumer
+  namespace: kong
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+username: "krateo-consumer"
+credentials:
+  - krateo-consumer-secret

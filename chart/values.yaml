@@ -1,22 +1,14 @@
-mongodb:
-  uri: ""
-  password: ""
+ignore_self_signed_ssl: false
 
-services:
-  ignore_self_signed_ssl: false
-  hosts:
-    auth: "http://auth-service.krateo-system.svc"
-    deployment: "http://deployment-service.krateo-system.svc"
-    template: "http://template-service.krateo-system.svc"
-    endpoint: "http://endpoint-service.krateo-system.svc"
-    git: "http://git-service.krateo-system.svc"
-    argocd: "http://argocd-service.krateo-system.svc"
-    log: "http://log-service.krateo-system.svc"
-    socket: "http://socket-service.krateo-system.svc"
-    kubernetes: "http://kubernetes-service.krateo-system.svc"
-    keptn: "http://keptn-service.krateo-system.svc"
-    codequality: "http://codequality-service.krateo-system.svc"
-    pipeline: "http://pipeline-service.krateo-system.svc"
-    secret: "http://secret-service.krateo-system.svc"
-    provider: "http://provider-service.krateo-system.svc"
-    capi: "http://capi-service.krateo-system.svc"
+JWT:
+  secret: "3b0a17f21dd243bdab165245ab2464f6"
+  issuer: "13b46593fe704c57966ff41dca9dc48b"
+
+cookie:
+  name: "krateoplatformops"
+  httpOnly: "true"
+  secure: "true"
+  maxAge: 2592000
+  domain: "krateo.site"
+  sameSite: "Strict"
+  path: "/"
