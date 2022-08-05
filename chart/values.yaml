@@ -1,6 +1,6 @@
 ignore_self_signed_ssl: false
 
-JWT:
+jwt:
   secret: "3b0a17f21dd243bdab165245ab2464f6"
   issuer: "13b46593fe704c57966ff41dca9dc48b"
 
