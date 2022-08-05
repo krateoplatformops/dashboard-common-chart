@@ -1,0 +1,42 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: krateo-insecure-ingress
+  namespace: krateo-system
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+    konghq.com/strip-path: "true"
+spec:
+  rules:
+    - host: api.krateo.site
+      http:
+        paths:
+          - path: /auth/*
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-service
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: krateo-secure-ingress
+  namespace: krateo-system
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+    konghq.com/plugins: jwt-krateo
+    konghq.com/strip-path: "true"
+spec:
+  rules:
+    - host: api.krateo.site
+      http:
+        paths:
+          - path: /package/*
+            pathType: Prefix
+            backend:
+              service:
+                name: provider-service
+                port:
+                  number: 80

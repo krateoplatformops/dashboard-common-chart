@@ -4,5 +4,5 @@ metadata:
   name: jwt-krateo
 config:
   cookie_names:
-    - {{ .Values.cookie.name | b64enc }}
+    - {{ .Values.cookie.name }}
 plugin: jwt
