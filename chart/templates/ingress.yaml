@@ -5,6 +5,7 @@ metadata:
   namespace: krateo-system
   annotations:
     kubernetes.io/ingress.class: "kong"
+    konghq.com/plugins: cors-krateo
     konghq.com/strip-path: "true"
 spec:
   rules:
@@ -26,7 +27,7 @@ metadata:
   namespace: krateo-system
   annotations:
     kubernetes.io/ingress.class: "kong"
-    konghq.com/plugins: jwt-krateo
+    konghq.com/plugins: jwt-krateo, cors-krateo
     konghq.com/strip-path: "true"
 spec:
   rules:
@@ -38,5 +39,12 @@ spec:
             backend:
               service:
                 name: provider-service
+                port:
+                  number: 80
+          - path: /secret/*
+            pathType: Prefix
+            backend:
+              service:
+                name: secret-service
                 port:
                   number: 80
