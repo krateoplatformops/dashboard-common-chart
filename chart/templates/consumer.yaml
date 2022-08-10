@@ -5,8 +5,8 @@ metadata:
   name: krateo-consumer-secret
   namespace: kong
 data:
-  key: {{ .Values.jwt.secret | b64enc }}
-  secret: {{ .Values.jwt.issuer | b64enc }}
+  key: {{ .Values.jwt.issuer | b64enc }}
+  secret: {{ .Values.jwt.secret | b64enc }}
   kongCredType: and0
 ---
 apiVersion: configuration.konghq.com/v1
