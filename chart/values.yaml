@@ -12,3 +12,6 @@ cookie:
   domain: "krateo.site"
   sameSite: "Strict"
   path: "/"
+
+mongodb:
+  uri: ""

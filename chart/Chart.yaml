@@ -4,8 +4,8 @@ description: Krateo PlatformOps Dashboard Common Chart
 type: application
 icon: "https://github.com/krateoplatformops/community/blob/main/logos/black/icon.svg"
 
-version: VERSION
-appVersion: VERSION
+version: 1.0.0
+appVersion: 1.0.0
 
 maintainers:
   - name: Mauro Sala

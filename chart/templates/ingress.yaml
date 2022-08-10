@@ -48,3 +48,24 @@ spec:
                 name: secret-service
                 port:
                   number: 80
+          - path: /kubernetes/*
+            pathType: Prefix
+            backend:
+              service:
+                name: kubernetes-service
+                port:
+                  number: 80
+          - path: /deployment/*
+            pathType: Prefix
+            backend:
+              service:
+                name: deployment-service
+                port:
+                  number: 80
+          - path: /argocd/*
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-service
+                port:
+                  number: 80
