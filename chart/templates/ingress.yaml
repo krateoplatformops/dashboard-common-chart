@@ -115,6 +115,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: socket-service
+                name: notification-service
                 port:
                   number: 80
