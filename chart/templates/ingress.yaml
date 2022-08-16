@@ -104,3 +104,10 @@ spec:
                 name: template-service
                 port:
                   number: 80
+          - path: /doc/*
+            pathType: Prefix
+            backend:
+              service:
+                name: git-service
+                port:
+                  number: 80
