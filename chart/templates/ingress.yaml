@@ -111,3 +111,10 @@ spec:
                 name: git-service
                 port:
                   number: 80
+          - path: /notification/*
+            pathType: Prefix
+            backend:
+              service:
+                name: socket-service
+                port:
+                  number: 80
