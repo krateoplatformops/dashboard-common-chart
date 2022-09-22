@@ -111,6 +111,13 @@ spec:
                 name: git-service
                 port:
                   number: 80
+          - path: /component/*
+            pathType: Prefix
+            backend:
+              service:
+                name: component-service
+                port:
+                  number: 80
           - path: /
             pathType: Prefix
             backend:
