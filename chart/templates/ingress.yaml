@@ -118,6 +118,13 @@ spec:
                 name: component-service
                 port:
                   number: 80
+          - path: /event/*
+            pathType: Prefix
+            backend:
+              service:
+                name: event-service
+                port:
+                  number: 80
           - path: /
             pathType: Prefix
             backend:
