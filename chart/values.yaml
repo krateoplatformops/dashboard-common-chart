@@ -4,14 +4,18 @@ jwt:
   secret: "3b0a17f21dd243bdab165245ab2464f6"
   issuer: "13b46593fe704c57966ff41dca9dc48b"
 
+title: Krateo PlatformOps
+
+schema: https
+domain:
+  base: krateo.site
+  app: app
+  api: api
+
 cookie:
   name: "krateoplatformops"
   httpOnly: "true"
   secure: "true"
   maxAge: 2592000
-  domain: "krateo.site"
   sameSite: "Strict"
   path: "/"
-
-mongodb:
-  uri: ""

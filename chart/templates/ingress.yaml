@@ -1,6 +1,26 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: krateo-app-ingress
+  namespace: krateo-system
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+spec:
+  rules:
+    - host: {{ .Values.domain.app }}.{{ .Values.domain.base }}
+      http:
+        paths:
+          - path: /*
+            pathType: Prefix
+            backend:
+              service:
+                name: app-service
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
   name: krateo-insecure-ingress
   namespace: krateo-system
   annotations:
@@ -9,7 +29,7 @@ metadata:
     konghq.com/strip-path: "true"
 spec:
   rules:
-    - host: api.krateo.site
+    - host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
       http:
         paths:
           - path: /auth/*
@@ -31,7 +51,7 @@ metadata:
     konghq.com/strip-path: "true"
 spec:
   rules:
-    - host: api.krateo.site
+    - host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
       http:
         paths:
           - path: /package/*

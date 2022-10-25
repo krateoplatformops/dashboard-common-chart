@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  runtime-config.js: |
+    window['runConfig'] = {
+      apiBaseUrl: '{{ .Values.schema }}://{{ .Values.domain.api }}.{{ .Values.domain.base }}',
+      notificationUrl: '{{ .Values.schema }}://{{ .Values.domain.api }}.{{ .Values.domain.base }}',
+      title: '{{ .Values.title }}'
+    }
