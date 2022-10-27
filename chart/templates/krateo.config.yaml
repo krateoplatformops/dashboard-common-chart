@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: krateo-config
+  namespace: {{ .Release.Namespace }}
 data:
   NAMESPACE: {{ .Release.Namespace | quote }}
   COOKIE_NAME: {{ .Values.cookie.name | quote }}

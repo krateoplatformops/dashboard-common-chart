@@ -2,7 +2,7 @@ apiVersion: configuration.konghq.com/v1
 kind: KongConsumer
 metadata:
   name: krateo-consumer
-  namespace: kong
+  namespace: {{ .Release.Namespace }}
   annotations:
     kubernetes.io/ingress.class: "kong"
 username: "krateo-consumer"

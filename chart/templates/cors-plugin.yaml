@@ -2,6 +2,7 @@ apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
   name: cors-krateo
+  namespace: {{ .Release.Namespace }}
 config: 
   origins:
   - '*'

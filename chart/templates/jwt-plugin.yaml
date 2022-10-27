@@ -2,6 +2,7 @@ apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
   name: jwt-krateo
+  namespace: {{ .Release.Namespace }}
 config:
   cookie_names:
     - {{ .Values.cookie.name }}
