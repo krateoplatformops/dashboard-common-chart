@@ -32,7 +32,7 @@ spec:
     - host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
       http:
         paths:
-          - path: /auth/*
+          - path: /auth/
             pathType: Prefix
             backend:
               service:
@@ -54,91 +54,91 @@ spec:
     - host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
       http:
         paths:
-          - path: /package/*
+          - path: /package/
             pathType: Prefix
             backend:
               service:
                 name: provider-service
                 port:
                   number: 80
-          - path: /secret/*
+          - path: /secret/
             pathType: Prefix
             backend:
               service:
                 name: secret-service
                 port:
                   number: 80
-          - path: /kubernetes/*
+          - path: /kubernetes/
             pathType: Prefix
             backend:
               service:
                 name: kubernetes-service
                 port:
                   number: 80
-          - path: /deployment/*
+          - path: /deployment/
             pathType: Prefix
             backend:
               service:
                 name: deployment-service
                 port:
                   number: 80
-          - path: /argocd/*
+          - path: /argocd/
             pathType: Prefix
             backend:
               service:
                 name: argocd-service
                 port:
                   number: 80
-          - path: /pipeline/*
+          - path: /pipeline/
             pathType: Prefix
             backend:
               service:
                 name: pipeline-service
                 port:
                   number: 80
-          - path: /codequality/*
-            pathType: Prefix
-            backend:
-              service:
-                name: codequality-service
-                port:
-                  number: 80
-          - path: /capi/*
-            pathType: Prefix
-            backend:
-              service:
-                name: capi-service
-                port:
-                  number: 80
-          - path: /keptn/*
-            pathType: Prefix
-            backend:
-              service:
-                name: keptn-service
-                port:
-                  number: 80
-          - path: /template/*
+          # - path: /codequality/
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: codequality-service
+          #       port:
+          #         number: 80
+          # - path: /capi/
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: capi-service
+          #       port:
+          #         number: 80
+          # - path: /keptn/
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: keptn-service
+          #       port:
+          #         number: 80
+          - path: /template/
             pathType: Prefix
             backend:
               service:
                 name: template-service
                 port:
                   number: 80
-          - path: /doc/*
+          - path: /doc/
             pathType: Prefix
             backend:
               service:
                 name: git-service
                 port:
                   number: 80
-          - path: /component/*
+          - path: /component/
             pathType: Prefix
             backend:
               service:
                 name: component-service
                 port:
                   number: 80
-          - path: /event/*
+          - path: /event/
             pathType: Prefix
             backend:
               service:
