@@ -6,6 +6,8 @@ jwt:
 
 title: Krateo PlatformOps
 
+platform: kubernetes
+
 schema: https
 domain:
   base: krateo.site

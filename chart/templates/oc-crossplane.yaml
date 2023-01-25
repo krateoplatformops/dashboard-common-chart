@@ -1,0 +1,29 @@
+{{- if eq .Values.platform "openshift" -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: openshift-crossplane-full-finalizer-role
+rules:
+  - apiGroups:
+      - "*"
+    resources:
+      - "*/finalizers"
+    verbs:
+      - "*"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: openshift-crossplane-full-finalizer-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: openshift-crossplane-full-finalizer-role
+subjects:
+- kind: ServiceAccount
+  name: rbac-manager
+  namespace: crossplane-system
+- kind: ServiceAccount
+  name: crossplane
+  namespace: crossplane-system
+{{- end -}}

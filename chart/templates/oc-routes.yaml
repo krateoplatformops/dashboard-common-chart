@@ -1,0 +1,321 @@
+{{- if eq .Values.platform "openshift" -}}
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: krateo-app
+  labels:
+    app.kubernetes.io/part-of: krateo
+    app.kubernetes.io/component: app
+spec:
+  host: {{ .Values.domain.app }}.{{ .Values.domain.base }}
+  to:
+    kind: Service
+    name: app-service
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+  wildcardPolicy: None
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: krateo-auth
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+  labels:
+    app.kubernetes.io/part-of: krateo
+    app.kubernetes.io/component: auth
+spec:
+  host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
+  path: /auth
+  to:
+    kind: Service
+    name: auth-service
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+  wildcardPolicy: None
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+    haproxy.router.openshift.io/set-forwarded-headers: append
+    konghq.com/plugins: jwt-krateo, cors-krateo
+    konghq.com/strip-path: 'true'
+  name: krateo-pipeline
+  labels:
+    app.kubernetes.io/part-of: krateo
+    app.kubernetes.io/component: pipeline
+spec:
+  host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
+  path: /pipeline
+  to:
+    kind: Service
+    name: pipeline-service
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+    haproxy.router.openshift.io/set-forwarded-headers: append
+    konghq.com/plugins: jwt-krateo, cors-krateo
+    konghq.com/strip-path: 'true'
+  name: krateo-package
+  labels:
+    app.kubernetes.io/part-of: krateo
+    app.kubernetes.io/component: package
+spec:
+  host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
+  path: /package
+  to:
+    kind: Service
+    name: provider-service
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+    haproxy.router.openshift.io/set-forwarded-headers: append
+    konghq.com/plugins: jwt-krateo, cors-krateo
+    konghq.com/strip-path: 'true'
+  name: krateo-component
+  labels:
+    app.kubernetes.io/part-of: krateo
+    app.kubernetes.io/component: component
+spec:
+  host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
+  path: /component
+  to:
+    kind: Service
+    name: component-service
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+    haproxy.router.openshift.io/set-forwarded-headers: append
+    konghq.com/plugins: jwt-krateo, cors-krateo
+    konghq.com/strip-path: 'true'
+  name: krateo-argocd
+  labels:
+    app.kubernetes.io/part-of: krateo
+    app.kubernetes.io/component: argocd
+spec:
+  host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
+  path: /argocd
+  to:
+    kind: Service
+    name: argocd-service
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+    haproxy.router.openshift.io/set-forwarded-headers: append
+    konghq.com/plugins: jwt-krateo, cors-krateo
+    konghq.com/strip-path: 'true'
+  name: krateo-kubernetes
+  labels:
+    app.kubernetes.io/part-of: krateo
+    app.kubernetes.io/component: kubernetes
+spec:
+  host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
+  path: /kubernetes
+  to:
+    kind: Service
+    name: kubernetes-service
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+    haproxy.router.openshift.io/set-forwarded-headers: append
+    konghq.com/plugins: jwt-krateo, cors-krateo
+    konghq.com/strip-path: 'true'
+  name: krateo-doc
+  labels:
+    app.kubernetes.io/part-of: krateo
+    app.kubernetes.io/component: doc
+spec:
+  host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
+  path: /doc
+  to:
+    kind: Service
+    name: git-service
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+    haproxy.router.openshift.io/set-forwarded-headers: append
+    konghq.com/plugins: jwt-krateo, cors-krateo
+    konghq.com/strip-path: 'true'
+  name: krateo-secret
+  labels:
+    app.kubernetes.io/part-of: krateo
+    app.kubernetes.io/component: secret
+spec:
+  host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
+  path: /secret
+  to:
+    kind: Service
+    name: secret-service
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+    haproxy.router.openshift.io/set-forwarded-headers: append
+    konghq.com/plugins: jwt-krateo, cors-krateo
+    konghq.com/strip-path: 'true'
+  name: krateo-template
+  labels:
+    app.kubernetes.io/part-of: krateo
+    app.kubernetes.io/component: template
+spec:
+  host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
+  path: /template
+  to:
+    kind: Service
+    name: template-service
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+    haproxy.router.openshift.io/set-forwarded-headers: append
+    konghq.com/plugins: jwt-krateo, cors-krateo
+    konghq.com/strip-path: 'true'
+  name: krateo-deployment
+  labels:
+    app.kubernetes.io/part-of: krateo
+    app.kubernetes.io/component: deployment
+spec:
+  host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
+  path: /deployment
+  to:
+    kind: Service
+    name: deployment-service
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+    haproxy.router.openshift.io/set-forwarded-headers: append
+    konghq.com/plugins: jwt-krateo, cors-krateo
+    konghq.com/strip-path: 'true'
+  name: krateo-event
+  labels:
+    app.kubernetes.io/part-of: krateo
+    app.kubernetes.io/component: event
+spec:
+  host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
+  path: /event
+  to:
+    kind: Service
+    name: event-service
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: krateo-notification
+  labels:
+    app.kubernetes.io/part-of: krateo
+    app.kubernetes.io/component: notification
+spec:
+  host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
+  to:
+    kind: Service
+    name: notification-service
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+  wildcardPolicy: None
+{{- end -}}
