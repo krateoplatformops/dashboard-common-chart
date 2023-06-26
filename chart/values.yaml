@@ -21,3 +21,17 @@ cookie:
   maxAge: 2592000
   sameSite: "Strict"
   path: "/"
+
+app:
+  ingress:
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+
+api:
+  ingress:
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
