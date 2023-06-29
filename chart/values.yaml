@@ -10,6 +10,7 @@ platform: kubernetes
 
 schema: https
 domain:
+  # port: 8443
   base: krateo.site
   app: app
   api: api

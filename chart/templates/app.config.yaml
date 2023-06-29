@@ -1,3 +1,9 @@
+{{- $myVariable := "" }}
+{{- if .Values.domain.port }}
+  {{- $stringValue := toString .Values.domain.port }}
+  {{- $myVariable = printf ":%s" $stringValue }}
+{{- end }}
+# You can now use the $myVariable in your template
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -6,7 +12,7 @@ metadata:
 data:
   runtime-config.js: |
     window['runConfig'] = {
-      apiBaseUrl: '{{ .Values.schema }}://{{ .Values.domain.api }}.{{ .Values.domain.base }}',
-      notificationUrl: '{{ .Values.schema }}://{{ .Values.domain.api }}.{{ .Values.domain.base }}',
+      apiBaseUrl: '{{ .Values.schema }}://{{ .Values.domain.api }}.{{ .Values.domain.base }}{{ $myVariable }}',
+      notificationUrl: '{{ .Values.schema }}://{{ .Values.domain.api }}.{{ .Values.domain.base }}{{ $myVariable }}',
       title: '{{ .Values.title }}'
     }
