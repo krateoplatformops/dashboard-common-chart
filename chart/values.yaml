@@ -25,6 +25,8 @@ cookie:
 
 app:
   ingress:
+    # Set host when it's required to have a different one than the host defined in domain stanza
+    host: override.app.ingress.host
     tls: []
     #  - secretName: chart-example-tls
     #    hosts:
@@ -32,6 +34,8 @@ app:
 
 api:
   ingress:
+    # Set host when it's required to have a different one than the host defined in domain stanza
+    # host: override.api.ingress.host
     tls: []
     #  - secretName: chart-example-tls
     #    hosts:
