@@ -6,8 +6,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "kong"
 spec:
-  rules:
-    - host: {{ .Values.domain.app }}.{{ .Values.domain.base }}
+  rules: 
+    - host: {{ if .Values.app.ingress.host }}{{ .Values.app.ingress.host }}{{ else }}{{ .Values.domain.app }}.{{ .Values.domain.base }}{{ end }}
       http:
         paths:
           - path: /
@@ -39,7 +39,7 @@ metadata:
     konghq.com/strip-path: "true"
 spec:
   rules:
-    - host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
+    - host: {{ if .Values.api.ingress.host }}{{ .Values.api.ingress.host }}{{ else }}{{ .Values.domain.api }}.{{ .Values.domain.base }}{{ end }}
       http:
         paths:
           - path: /auth/
@@ -71,7 +71,7 @@ metadata:
     konghq.com/strip-path: "true"
 spec:
   rules:
-    - host: {{ .Values.domain.api }}.{{ .Values.domain.base }}
+    - host: {{ if .Values.api.ingress.host }}{{ .Values.api.ingress.host }}{{ else }}{{ .Values.domain.api }}.{{ .Values.domain.base }}{{ end }}
       http:
         paths:
           - path: /package/
